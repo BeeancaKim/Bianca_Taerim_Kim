@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archive | 자료 상세 보기</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Serif+KR:wght@400;700&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #FCFCFC; 
+            color: #001A35; 
+            line-height: 1.8;
+        }
+        .font-serif { font-family: 'Noto Serif KR', serif; }
+        
+        /* 포인트 컬러 커스텀 */
+        .text-navy { color: #001A35; }
+        .bg-navy { background-color: #001A35; }
+        .text-gold { color: #FFB800; }
+        .bg-gold { background-color: #FFB800; }
+        .text-burgundy { color: #800020; }
+        .border-burgundy { border-color: #800020; }
+
+        /* 애니메이션 */
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* 본문 선택 강조 */
+        ::selection { background: #FFB800; color: #001A35; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Top Navigation -->
+    <nav class="sticky top-0 w-full bg-[#001A35] text-white z-50 px-8 py-4 flex justify-between items-center shadow-md">
+        <a href="index.html" class="flex items-center gap-2 text-sm font-bold tracking-widest hover:text-[#FFB800] transition-colors">
+            <i class="fa-solid fa-arrow-left-long"></i> BACK TO PORTFOLIO
+        </a>
+        <div class="text-xs font-black tracking-[0.3em] opacity-50 uppercase italic">
+            Knowledge Archive Module
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 py-20 fade-in">
+        
+        <!-- Header Section -->
+        <header class="mb-16 border-b border-gray-100 pb-12">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="bg-[#800020] text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">
+                    철학 / 법학
+                </span>
+                <span class="text-gray-300 text-xs font-mono">|</span>
+                <time class="text-gray-400 text-xs font-mono tracking-tighter">2026. 03. 19</time>
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl font-black leading-tight mb-8">
+                여기에 아카이빙 자료의 <br>
+                <span class="text-[#800020]">핵심 제목</span>을 입력하세요.
+            </h1>
+
+            <div class="flex flex-wrap gap-2">
+                <span class="text-xs font-bold text-gray-400">#푸코</span>
+                <span class="text-xs font-bold text-gray-400">#권력론</span>
+                <span class="text-xs font-bold text-gray-400">#서사법학</span>
+            </div>
+        </header>
+
+        <!-- Content Body -->
+        <article class="font-serif text-lg text-gray-700 space-y-8 mb-20 leading-relaxed">
+            <p>
+                이 부분에 연구 자료나 브레인스토밍한 내용을 자유롭게 작성하세요. 
+                법학의 차가운 논리와 문학의 서사적 깊이가 만나는 지점에 대한 통찰을 기록할 수 있습니다. 
+                글자 크기와 행간은 학술적인 가독성을 최우선으로 고려하여 설정되었습니다.
+            </p>
+            
+            <blockquote class="pl-8 border-l-4 border-[#FFB800] italic text-[#001A35] font-bold py-2 my-10 bg-gray-50/50">
+                "법은 단순한 규칙의 집합이 아니라, 인간이 세계를 이해하고 <br>
+                자신의 서사를 기술하는 하나의 방식이다."
+            </blockquote>
+
+            <p>
+                추가적인 분석 내용을 여기에 입력하세요. 문단 구분을 통해 긴 글도 지루하지 않게 읽히도록 구성했습니다. 
+                삐 님이 깃허브에 이 HTML 파일을 업로드하고, 메인 포트폴리오의 지식 지도 노드에서 이 파일로 링크를 걸면 됩니다.
+            </p>
+
+            <h3 class="text-2xl font-black text-[#001A35] pt-6 mb-4 font-sans italic tracking-tight">주요 분석 포인트</h3>
+            <ul class="list-disc pl-5 space-y-3 font-sans text-base">
+                <li>분석 포인트 첫 번째 내용을 입력하세요.</li>
+                <li>분석 포인트 두 번째 내용을 입력하세요.</li>
+                <li>분석 포인트 세 번째 내용을 입력하세요.</li>
+            </ul>
+        </article>
+
+        <!-- File Attachment Section -->
+        <section class="bg-white border-2 border-[#001A35] rounded-3xl p-8 shadow-[12px_12px_0px_0px_rgba(0,26,53,1)] hover:shadow-none transition-all duration-300">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4 text-center md:text-left">
+                    <div class="w-16 h-16 bg-[#FFB800] rounded-2xl flex items-center justify-center text-[#001A35] text-2xl shadow-inner">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-black text-xl mb-1">상세 자료 및 논문 전문</h4>
+                        <p class="text-xs text-gray-400 uppercase tracking-widest font-bold">Attachment: full_text_archive.pdf</p>
+                    </div>
+                </div>
+                
+                <!-- 깃허브 내 PDF 경로와 연결하세요 -->
+                <a href="./pdfs/sample.pdf" target="_blank" class="px-8 py-4 bg-[#001A35] text-[#FFB800] font-black rounded-xl hover:bg-[#800020] hover:text-white transition-all flex items-center gap-3 group">
+                    DOWNLOAD PDF <i class="fa-solid fa-download group-hover:bounce"></i>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-gray-50 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-lg font-black italic uppercase tracking-tighter text-[#001A35]">
+                Dr. <span class="text-[#800020]">B</span> Portfolio
+            </h2>
+            <p class="text-[10px] text-gray-300 mt-3 font-mono uppercase tracking-[0.5em] italic">
+                Advancing the Discourse of Law & Literature
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
