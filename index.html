@@ -66,7 +66,7 @@
             useEffect(() => {
                 const handleMouseMove = (e) => {
                     if (draggingId !== null && isAdmin) {
-                        setArchiveData(prev => prev.map(n => 
+                        setArchiveData(prev => prev.map(n => 
                             n.id === draggingId ? { ...n, x: e.clientX - offset.x, y: e.clientY - offset.y } : n
                         ));
                     }
@@ -83,7 +83,7 @@
             }, [draggingId, offset, isAdmin]);
 
             const handleAdminLogin = () => {
-                if (password === '8066') { 
+                if (password === '8066') { 
                     setIsAdmin(true);
                     setShowPasswordModal(false);
                     setPassword('');
@@ -101,7 +101,7 @@
                 <div className={`min-h-screen ${draggingId ? 'user-select-none' : ''}`}>
                     <nav className="fixed top-0 w-full bg-[#001A35] text-white z-50 px-10 py-6 flex justify-between items-center shadow-2xl">
                         <div className="text-2xl font-black tracking-tighter italic">
-                           Bianca T.<span className="text-[#FFB800]">Kim</span>, Ph.D.
+                            Bianca T.<span className="text-[#FFB800]">Kim</span>, Ph.D.
                         </div>
                         <div className="hidden md:flex space-x-12 items-center">
                             {['intro', 'research', 'archive', 'youtube'].map((tab) => (
@@ -127,131 +127,53 @@
                                         </div>
                                     </div>
                                     <div className="flex-1 pt-4 space-y-8">
-    <div className="space-y-6">
-        <h2 className="text-5xl font-black leading-[1.1] text-[#001A35]">문장 속의 정의를 <br/><span className="text-[#800020]">법전 위로</span> 길어올리다.</h2>
-        <p className="text-xl text-gray-600 leading-relaxed font-serif max-w-3xl">법학의 논리적 완결성과 문학의 서사적 진실이 교차하는 지점을 탐구합니다. 저는 텍스트 너머의 인간을 이해하고, 그것을 제도적 언어로 번역하는 작업을 수행합니다.</p>
-    </div>
+                                        <div className="space-y-6">
+                                            <h2 className="text-5xl font-black leading-[1.1] text-[#001A35]">문장 속의 정의를 <br/><span className="text-[#800020]">법전 위로</span> 길어올리다.</h2>
+                                            <p className="text-xl text-gray-600 leading-relaxed font-serif max-w-3xl">법학의 논리적 완결성과 문학의 서사적 진실이 교차하는 지점을 탐구합니다. 저는 텍스트 너머의 인간을 이해하고, 그것을 제도적 언어로 번역하는 작업을 수행합니다.</p>
+                                        </div>
 
-    {/* CV 표를 소개 문장 아래(오른쪽 칸 내부)로 이동 */}
-    <div className="w-full bg-white border border-gray-100 rounded-[32px] p-12 shadow-sm relative overflow-hidden font-serif">
-        <div className="absolute top-0 right-0 w-48 h-48 bg-[#FFB800]/5 rounded-full -mr-24 -mt-24"></div>
-        <h3 className="text-sm font-black font-sans text-[#800020] mb-10 flex items-center gap-3 tracking-[0.3em]">
-            <div className="w-8 h-1 bg-[#800020]"></div> Curriculum Vitae
-        </h3>
-        <div className="grid grid-cols-1 gap-10 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start border-b border-gray-50 pb-8">
-                <span className="font-black font-sans text-[#001A35]/30 italic uppercase">
-                    Academic<br/>Qualifications
-                </span>
-                <div className="md:col-span-3 space-y-7">
-                    <div className="group">
-                        <div className="flex items-center gap-4">
-                            <span className="text-2xl font-black italic text-[#001A35] min-w-[70px]">Ph.D.</span>
-                            <div className="h-1 w-6 bg-[#FFB800]"></div>
-                            <span className="text-lg font-bold text-[#800020]">Kyung Hee University</span>
-                        </div>
-                        <p className="text-sm text-gray-400 mt-1 ml-[90px] uppercase tracking-wider">Classical Korean Literature, Graduate School</p>
-                    </div>
-                    <div className="group">
-                        <div className="flex items-center gap-4">
-                            <span className="text-2xl font-black italic text-[#001A35] min-w-[70px]">J.D.</span>
-                            <div className="h-1 w-6 bg-[#FFB800]"></div>
-                            <span className="text-lg font-bold text-[#800020]">Kyung Hee University</span>
-                        </div>
-                        <p className="text-sm text-gray-400 mt-1 ml-[90px] uppercase tracking-wider">Law,Law School</p>
-                    </div>
-                    <div className="group">
-                        <div className="flex items-center gap-4">
-                            <span className="text-2xl font-black italic text-[#001A35] min-w-[70px]">M.A.</span>
-                            <div className="h-1 w-6 bg-[#FFB800]"></div>
-                            <span className="text-lg font-bold text-[#800020]">Kyung Hee University</span>
-                        </div>
-                        <p className="text-sm text-gray-400 mt-1 ml-[90px] uppercase tracking-wider">Classical Korean Literature, Graduate School</p>
-                    </div>
-                    <div className="group">
-                        <div className="flex items-center gap-4">
-                            <span className="text-2xl font-black italic text-[#001A35] min-w-[70px]">B.A.</span>
-                            <div className="h-1 w-6 bg-[#FFB800]"></div>
-                            <span className="text-lg font-bold text-[#800020]">Kyung Hee University</span>
-                        </div>
-                        <p className="text-sm text-gray-400 mt-1 ml-[90px] uppercase tracking-wider">Korean Language and Literature</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start border-b border-gray-100 pb-8">
-                <span className="font-black font-sans text-[#001A35]/30 italic uppercase">Specializations</span>
-                <div className="md:col-span-3 flex flex-wrap gap-3">
-                    {['Law & Literature', 'Korean Classics', 'Digital Humanities', 'Jurisprudence'].map(tag => (
-                        <span key={tag} className="px-4 py-1.5 bg-gray-50 text-[#001A35] text-xs font-black rounded-lg border border-gray-200">#{tag}</span>
-                    ))}
-                </div>
-            </div>
+                                        <div className="w-full bg-white border border-gray-100 rounded-[32px] p-12 shadow-sm relative overflow-hidden font-serif">
+                                            <div className="absolute top-0 right-0 w-48 h-48 bg-[#FFB800]/5 rounded-full -mr-24 -mt-24"></div>
+                                            <h3 className="text-sm font-black font-sans text-[#800020] mb-10 flex items-center gap-3 tracking-[0.3em]">
+                                                <div className="w-8 h-1 bg-[#800020]"></div> Curriculum Vitae
+                                            </h3>
+                                            <div className="grid grid-cols-1 gap-10 relative z-10">
+                                                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start border-b border-gray-50 pb-8">
+                                                    <span className="font-black font-sans text-[#001A35]/30 italic uppercase">Academic<br/>Qualifications</span>
+                                                    <div className="md:col-span-3 space-y-7">
+                                                        <div className="group"><div className="flex items-center gap-4"><span className="text-2xl font-black italic text-[#001A35] min-w-[70px]">Ph.D.</span><div className="h-1 w-6 bg-[#FFB800]"></div><span className="text-lg font-bold text-[#800020]">Kyung Hee University</span></div><p className="text-sm text-gray-400 mt-1 ml-[90px] uppercase tracking-wider">Classical Korean Literature, Graduate School</p></div>
+                                                        <div className="group"><div className="flex items-center gap-4"><span className="text-2xl font-black italic text-[#001A35] min-w-[70px]">J.D.</span><div className="h-1 w-6 bg-[#FFB800]"></div><span className="text-lg font-bold text-[#800020]">Kyung Hee University</span></div><p className="text-sm text-gray-400 mt-1 ml-[90px] uppercase tracking-wider">Law,Law School</p></div>
+                                                        <div className="group"><div className="flex items-center gap-4"><span className="text-2xl font-black italic text-[#001A35] min-w-[70px]">M.A.</span><div className="h-1 w-6 bg-[#FFB800]"></div><span className="text-lg font-bold text-[#800020]">Kyung Hee University</span></div><p className="text-sm text-gray-400 mt-1 ml-[90px] uppercase tracking-wider">Classical Korean Literature, Graduate School</p></div>
+                                                        <div className="group"><div className="flex items-center gap-4"><span className="text-2xl font-black italic text-[#001A35] min-w-[70px]">B.A.</span><div className="h-1 w-6 bg-[#FFB800]"></div><span className="text-lg font-bold text-[#800020]">Kyung Hee University</span></div><p className="text-sm text-gray-400 mt-1 ml-[90px] uppercase tracking-wider">Korean Language and Literature</p></div>
+                                                    </div>
+                                                </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
-                <span className="font-black font-sans text-[#001A35]/30 italic uppercase">Professional<br/>Appointments</span>
-                <div className="md:col-span-3 space-y-7">
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50">
-                        <span className="text-[#800020] font-black text-sm min-w-[160px]">2021. 09. – 2024. 09.</span>
-                        <div className="flex flex-col">
-                            <span className="text-[#001A35] font-bold">Lecturer</span>
-                            <span className="text-xs text-gray-400 uppercase tracking-widest mt-1">Department of Korean Language and Literature, Kyung Hee University</span>
-                        </div>
-                    </div>
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50">
-                        <span className="text-[#800020] font-black text-sm min-w-[160px]">2020. 01. – 2021. 01.</span>
-                        <div className="flex flex-col">
-                            <span className="text-[#001A35] font-bold">Editorial Board Member</span>
-                            <span className="text-xs text-gray-400 uppercase tracking-widest mt-1">The Graduate School Gazette, Kyung Hee University</span>
-                        </div>
-                    </div>
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50">
-                        <span className="text-[#800020] font-black text-sm min-w-[160px]">2017. 03. – 2020. 10.</span>
-                        <div className="flex flex-col">
-                            <span className="text-[#001A35] font-bold">Researcher</span>
-                            <span className="text-xs text-gray-400 uppercase tracking-widest mt-1">Institute of Folklore Studies</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start border-b border-gray-100 pb-8"><span className="font-black font-sans text-[#001A35]/30 italic uppercase">Specializations</span><div className="md:col-span-3 flex flex-wrap gap-3">{['Law & Literature', 'Korean Classics', 'Digital Humanities', 'Jurisprudence'].map(tag => (<span key={tag} className="px-4 py-1.5 bg-gray-50 text-[#001A35] text-xs font-black rounded-lg border border-gray-200">#{tag}</span>))}</div></div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start pt-12 border-t border-gray-100">
-                <span className="font-black font-sans text-[#001A35]/30 italic uppercase">Research<br/>Contributions</span>
-                <div className="md:col-span-3 space-y-7">
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50">
-                        <span className="text-[#800020] font-black text-sm min-w-[160px]">2023. 02.</span>
-                        <div className="flex flex-col">
-                            <span className="text-[#001A35] font-bold">A Study on Legal Education of Humanities Department</span>
-                            <span className="text-[10px] text-[#FFB800] font-black uppercase mt-1 tracking-tighter">Doctoral Dissertation</span>
-                        </div>
-                    </div>
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50">
-                        <span className="text-[#800020] font-black text-sm min-w-[160px]">2020. 12.</span>
-                        <div className="flex flex-col">
-                            <span className="text-[#001A35] font-bold">Dongducheon Village Archive (Maeul-ji)</span>
-                            <span className="text-xs text-gray-400 mt-1 uppercase tracking-tighter">Gyeonggi Cultural Foundation (Co-author)</span>
-                        </div>
-                    </div>
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50">
-                        <span className="text-[#800020] font-black text-sm min-w-[160px]">2020. 11.</span>
-                        <div className="flex flex-col">
-                            <span className="text-[#001A35] font-bold">A Structural Study of Muga through Ontology Methods: Focusing on 'Woncheongang-bonpuri'</span>
-                            <span className="text-[10px] text-gray-400 uppercase mt-1">Co-author</span>
-                        </div>
-                    </div>
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8">
-                        <span className="text-[#800020] font-black text-sm min-w-[160px]">2019. 02.</span>
-                        <div className="flex flex-col">
-                            <span className="text-[#001A35] font-bold">The Status and Prospect of Classical Culture Contents</span>
-                            <span className="text-[10px] text-[#FFB800] font-black uppercase mt-1 tracking-tighter">Master’s Thesis</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
+                                                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start border-b border-gray-100 pb-8">
+                                                    <span className="font-black font-sans text-[#001A35]/30 italic uppercase">Professional<br/>Appointments</span>
+                                                    <div className="md:col-span-3 space-y-7">
+                                                        <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50"><span className="text-[#800020] font-black text-sm min-w-[160px]">2021. 09. – 2024. 09.</span><div className="flex flex-col"><span className="text-[#001A35] font-bold">Lecturer</span><span className="text-xs text-gray-400 uppercase tracking-widest mt-1">Department of Korean Language and Literature, Kyung Hee University</span></div></div>
+                                                        <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50"><span className="text-[#800020] font-black text-sm min-w-[160px]">2020. 01. – 2021. 01.</span><div className="flex flex-col"><span className="text-[#001A35] font-bold">Editorial Board Member</span><span className="text-xs text-gray-400 uppercase tracking-widest mt-1">The Graduate School Gazette, Kyung Hee University</span></div></div>
+                                                        <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50"><span className="text-[#800020] font-black text-sm min-w-[160px]">2017. 03. – 2020. 10.</span><div className="flex flex-col"><span className="text-[#001A35] font-bold">Researcher</span><span className="text-xs text-gray-400 uppercase tracking-widest mt-1">Institute of Folklore Studies</span></div></div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start pt-12 border-t border-gray-100">
+                                                    <span className="font-black font-sans text-[#001A35]/30 italic uppercase">Research<br/>Contributions</span>
+                                                    <div className="md:col-span-3 space-y-7">
+                                                        <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50"><span className="text-[#800020] font-black text-sm min-w-[160px]">2023. 02.</span><div className="flex flex-col"><span className="text-[#001A35] font-bold">A Study on Legal Education of Humanities Department</span><span className="text-[10px] text-[#FFB800] font-black uppercase mt-1 tracking-tighter">Doctoral Dissertation</span></div></div>
+                                                        <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50"><span className="text-[#800020] font-black text-sm min-w-[160px]">2020. 12.</span><div className="flex flex-col"><span className="text-[#001A35] font-bold">Dongducheon Village Archive (Maeul-ji)</span><span className="text-xs text-gray-400 mt-1 uppercase tracking-tighter">Gyeonggi Cultural Foundation (Co-author)</span></div></div>
+                                                        <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50"><span className="text-[#800020] font-black text-sm min-w-[160px]">2020. 11.</span><div className="flex flex-col"><span className="text-[#001A35] font-bold">A Structural Study of Muga through Ontology Methods: Focusing on 'Woncheongang-bonpuri'</span><span className="text-[10px] text-gray-400 uppercase mt-1">Co-author</span></div></div>
+                                                        <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8"><span className="text-[#800020] font-black text-sm min-w-[160px]">2019. 02.</span><div className="flex flex-col"><span className="text-[#001A35] font-bold">The Status and Prospect of Classical Culture Contents</span><span className="text-[10px] text-[#FFB800] font-black uppercase mt-1 tracking-tighter">Master’s Thesis</span></div></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        )}
 
                         {activeTab === 'research' && (
                             <div className="fade-in space-y-16">
@@ -288,19 +210,10 @@
                                                 }))}
                                             </svg>
                                             {archiveData.map((node) => (
-                                                <div 
-                                                    key={node.id} 
-                                                    onMouseDown={(e) => handleMouseDown(e, node)}
-                                                    onClick={() => !isAdmin && setSelectedArchive(node)}
-                                                    className={`absolute w-64 p-8 bg-white border border-gray-50 rounded-3xl shadow-lg transition-all z-10 
-                                                        ${isAdmin ? 'cursor-move ring-2 ring-dashed ring-[#FFB800]' : 'cursor-pointer hover:shadow-2xl hover:border-[#FFB800] hover:-translate-y-1'}`}
-                                                    style={{ left: node.x, top: node.y }}
-                                                >
-                                                    <div className="text-[10px] font-black text-[#800020] mb-3 tracking-[0.2em] uppercase">{node.category}</div>
+                                                <div key={node.id} onMouseDown={(e) => handleMouseDown(e, node)} onClick={() => !isAdmin && setSelectedArchive(node)} className={`absolute w-64 p-8 bg-white border border-gray-50 rounded-3xl shadow-lg transition-all z-10 ${isAdmin ? 'cursor-move ring-2 ring-dashed ring-[#FFB800]' : 'cursor-pointer hover:shadow-2xl hover:border-[#FFB800]'}`} style={{ left: node.x, top: node.y }}>
+                                                    <div className="text-[10px] font-black text-[#800020] mb-3 uppercase tracking-widest">{node.category}</div>
                                                     <h4 className="font-black text-base leading-tight text-[#001A35]">{node.title}</h4>
-                                                    <div className="mt-4 flex justify-end text-[#FFB800]">
-                                                        <i className={`fa-solid ${isAdmin ? 'fa-up-down-left-right' : 'fa-maximize'} text-xs opacity-50`}></i>
-                                                    </div>
+                                                    <div className="mt-4 flex justify-end text-[#FFB800]"><i className={`fa-solid ${isAdmin ? 'fa-up-down-left-right' : 'fa-maximize'} text-xs opacity-50`}></i></div>
                                                 </div>
                                             ))}
                                         </div>
