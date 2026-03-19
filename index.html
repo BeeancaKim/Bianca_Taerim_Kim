@@ -159,9 +159,9 @@
       <div className="flex items-center gap-4">
         <span className="text-2xl font-black italic text-[#001A35] min-w-[70px]">J.D.</span>
         <div className="h-1 w-6 bg-[#FFB800]"></div>
-        <span className="text-lg font-bold text-[#800020]">Kyung Hee University Law School</span>
+        <span className="text-lg font-bold text-[#800020]">Kyung Hee University</span>
       </div>
-      <p className="text-sm text-gray-400 mt-1 ml-[90px] uppercase tracking-wider">Law, Juris Doctor</p>
+      <p className="text-sm text-gray-400 mt-1 ml-[90px] uppercase tracking-wider">Law,Law School</p>
     </div>
 
     {/* M.A. */}
@@ -209,7 +209,7 @@
             </div>
         </div>
 
-        {/* 3. Lecturer */}
+        {/* 3. Lecturer 항목 */}
         <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50">
             <span className="text-[#800020] font-black text-sm min-w-[160px]">2021. 09. – 2024. 09.</span>
             <div className="flex flex-col">
@@ -217,8 +217,16 @@
                 <span className="text-xs text-gray-400 uppercase tracking-widest mt-1">Department of Korean Language and Literature, Kyung Hee University</span>
             </div>
         </div>
+    </div> {/* Professional Appointments의 col-span-3 닫기 */}
+</div> {/* Professional Appointments의 grid 닫기 */}
 
-        {/* 4. Master's Thesis */}
+{/* 여기서부터 새로운 Publications 섹션 시작 */}
+<div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start pt-12 border-t border-gray-100">
+    <span className="font-black font-sans text-[#001A35]/30 italic uppercase">
+        Research<br/>Contributions
+    </span>
+    <div className="md:col-span-3 space-y-7">
+        {/* 4. Master's Thesis 항목 시작 */}
         <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50">
             <span className="text-[#800020] font-black text-sm min-w-[160px]">2019. 02.</span>
             <div className="flex flex-col">
