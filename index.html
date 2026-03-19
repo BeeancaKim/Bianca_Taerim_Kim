@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. B Portfolio | Law & Literature</title>
+    <title>Bianca T. Kim, Ph.D. | Law & Literature</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -102,11 +102,11 @@
                 <div className={`min-h-screen ${draggingId ? 'user-select-none' : ''}`}>
                     <nav className="fixed top-0 w-full bg-[#001A35] text-white z-50 px-10 py-6 flex justify-between items-center shadow-2xl">
                         <div className="text-2xl font-black tracking-tighter uppercase italic">
-                            Dr. <span className="text-[#FFB800]">B</span> Portfolio
+                            <span className="text-[#FFB800]">Bianca T. Kim</span>, Ph.D.
                         </div>
                         <div className="hidden md:flex space-x-12 items-center">
                             {['intro', 'research', 'archive', 'youtube'].map((tab) => (
-                                <button key={tab} onClick={() => setActiveTab(tab)} className={`text-lg font-bold tracking-widest uppercase transition-all ${activeTab === tab ? 'text-[#FFB800]' : 'hover:text-[#FFB800]/70'}`}>{tab === 'intro' ? '소개' : tab === 'research' ? '연구 성과' : tab === 'archive' ? '아카이빙' : '유튜브'}</button>
+                                <button key={tab} onClick={() => setActiveTab(tab)} className={`text-lg font-bold tracking-widest uppercase transition-all ${activeTab === tab ? 'text-[#FFB800]' : 'hover:text-[#FFB800]/70'}`}>{tab === 'intro' ? 'Profile' : tab === 'research' ? 'Scholarship' : tab === 'archive' ? 'Resources' : 'Multimedia'}</button>
                             ))}
                             <button onClick={() => isAdmin ? setIsAdmin(false) : setShowPasswordModal(true)} className={`w-10 h-10 flex items-center justify-center rounded-full transition-colors ${isAdmin ? 'bg-[#FFB800] text-[#001A35]' : 'bg-white/10 text-white/40'}`}>
                                 <i className={`fa-solid ${isAdmin ? 'fa-unlock' : 'fa-lock'}`}></i>
@@ -123,8 +123,8 @@
                                             <i className="fa-solid fa-user text-white/20 text-7xl"></i>
                                         </div>
                                         <div className="mt-6">
-                                            <h1 className="text-3xl font-black tracking-tight text-[#001A35]">삐 (B)</h1>
-                                            <p className="text-[#800020] font-bold mt-1 uppercase tracking-widest text-xs">Law & Literature Ph.D.</p>
+                                            <h1 className="text-3xl font-black tracking-tight text-[#001A35]">Bianca Taerim Kim</h1>
+                                            <p className="text-[#800020] font-bold mt-1 uppercase tracking-widest text-xs">Classical Korean Literature Ph.D.</p>
                                         </div>
                                     </div>
                                     <div className="flex-1 pt-4 space-y-8">
@@ -265,7 +265,7 @@
                         </div>
                     )}
 
-                    <footer className="mt-40 py-24 bg-white border-t border-gray-100"><div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-12"><div><h2 className="text-2xl font-black italic uppercase tracking-tighter text-[#001A35]">Dr. <span className="text-[#800020]">B</span> Portfolio</h2><p className="text-[10px] text-gray-300 mt-3 font-mono uppercase tracking-[0.5em] italic">Advancing the Discourse of Law & Literature</p></div><div className="text-[10px] text-gray-400 font-black tracking-[0.8em] uppercase border-b border-gray-100 pb-2">© MMXXVI ALL RIGHTS RESERVED</div></div></footer>
+                    <footer className="mt-40 py-24 bg-white border-t border-gray-100"><div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-12"><div><h2 className="text-2xl font-black italic uppercase tracking-tighter text-[#001A35]"><span className="text-[#800020]">Bianca T. Kim</span>, Ph.D.</h2><p className="text-[10px] text-gray-300 mt-3 font-mono uppercase tracking-[0.5em] italic">Advancing the Discourse of Law & Literature</p></div><div className="text-[10px] text-gray-400 font-black tracking-[0.8em] uppercase border-b border-gray-100 pb-2">© MMXXVI ALL RIGHTS RESERVED</div></div></footer>
                 </div>
             );
         };
