@@ -1,401 +1,270 @@
-import React, { useState, useEffect } from 'react';
-import { User, BookOpen, Archive, Youtube, ExternalLink, X, ArrowRight, Layers, Lock, Link2, Plus, Copy, Maximize2 } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. B Portfolio | Law & Literature</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Serif+KR:wght@400;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #FCFCFC; color: #001A35; }
+        .font-serif { font-family: 'Noto Serif KR', serif; }
+        /* 지식 지도용 캔버스 설정 */
+        .archive-map-canvas { pointer-events: none; position: absolute; top: 0; left: 0; z-index: 5; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #001A35; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
 
-// --- Finalized Theme Colors ---
-// Midnight Navy: #001A35
-// Forsythia Gold: #FFB800
-// Deep Burgundy: #800020
-// Background: #FCFCFC
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
 
-const App = () => {
-  const [activeTab, setActiveTab] = useState('intro');
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [showPasswordModal, setShowPasswordModal] = useState(false);
-  const [password, setPassword] = useState('');
-  
-  const [selectedResearch, setSelectedResearch] = useState(null);
-  const [selectedArchive, setSelectedArchive] = useState(null);
+        // --- 삐 님의 리액트 코드를 HTML용으로 최적화한 본문 ---
+        const App = () => {
+            const [activeTab, setActiveTab] = useState('intro');
+            const [isAdmin, setIsAdmin] = useState(false);
+            const [showPasswordModal, setShowPasswordModal] = useState(false);
+            const [password, setPassword] = useState('');
+            const [selectedResearch, setSelectedResearch] = useState(null);
+            const [selectedArchive, setSelectedArchive] = useState(null);
 
-  // --- Archive Data ---
-  const [archiveData, setArchiveData] = useState([
-    { id: 1, x: 120, y: 100, category: "철학", title: "푸코의 감시와 처벌", content: "권력의 가시성과 법적 주체의 형성 과정에 대한 메모...", connections: [2, 4], link: "#" },
-    { id: 2, x: 500, y: 70, category: "비평", title: "현대 문학의 법정", content: "최근 발표된 단편 소설들에서 나타나는 법적 절차의 오류...", connections: [1], link: "#" },
-    { id: 3, x: 180, y: 340, category: "판례", title: "표현의 자유와 명예훼손", content: "문학 작품 속 실존 인물 묘사에 관한 최근 대법원 판결 정리...", connections: [4], link: "#" },
-    { id: 4, x: 550, y: 380, category: "노트", title: "법과 정의의 상관관계", content: "레비나스의 타자 철학을 법학에 접목시키는 아이디어...", connections: [1, 3], link: "#" },
-  ]);
+            // --- Archive Data ---
+            const [archiveData, setArchiveData] = useState([
+                { id: 1, x: 120, y: 100, category: "철학", title: "푸코의 감시와 처벌", content: "권력의 가시성과 법적 주체의 형성 과정에 대한 메모...", connections: [2, 4], link: "#" },
+                { id: 2, x: 500, y: 70, category: "비평", title: "현대 문학의 법정", content: "최근 발표된 단편 소설들에서 나타나는 법적 절차의 오류...", connections: [1], link: "#" },
+                { id: 3, x: 180, y: 340, category: "판례", title: "표현의 자유와 명예훼손", content: "문학 작품 속 실존 인물 묘사에 관한 최근 대법원 판결 정리...", connections: [4], link: "#" },
+                { id: 4, x: 550, y: 380, category: "노트", title: "법과 정의의 상관관계", content: "레비나스의 타자 철학을 법학에 접목시키는 아이디어...", connections: [1, 3], link: "#" },
+            ]);
 
-  const researchData = [
-    {
-      id: 1,
-      title: "법과 문학: 서사적 정의의 재구성",
-      summary: "현대 법철학 체계 내에서 문학적 서사가 가지는 치유적 기능을 탐구합니다.",
-      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-      abstract: "이 연구는 법적 판단의 객관성 뒤에 숨겨진 인간적 서사를 문학적 관점에서 분석하여, 법이 놓치기 쉬운 '구체적 정의'를 어떻게 실현할 수 있을지 논의합니다."
-    },
-    {
-      id: 2,
-      title: "19세기 소설에 나타난 형벌 제도의 상징성",
-      summary: "도스토옙스키와 빅토르 위고의 작품을 중심으로 당대 행형법을 분석합니다.",
-      image: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=800&q=80",
-      abstract: "근대 형법의 성립 과정에서 문학이 대중의 법 감정에 미친 영향과, 소설 속 공간이 형벌의 상징으로 기능하는 방식을 고찰합니다."
-    }
-  ];
+            const researchData = [
+                {
+                    id: 1,
+                    title: "법과 문학: 서사적 정의의 재구성",
+                    summary: "현대 법철학 체계 내에서 문학적 서사가 가지는 치유적 기능을 탐구합니다.",
+                    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
+                    abstract: "이 연구는 법적 판단의 객관성 뒤에 숨겨진 인간적 서사를 문학적 관점에서 분석하여, 법이 놓치기 쉬운 '구체적 정의'를 어떻게 실현할 수 있을지 논의합니다."
+                },
+                {
+                    id: 2,
+                    title: "19세기 소설에 나타난 형벌 제도의 상징성",
+                    summary: "도스토옙스키와 빅토르 위고의 작품을 중심으로 당대 행형법을 분석합니다.",
+                    image: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=800&q=80",
+                    abstract: "근대 형법의 성립 과정에서 문학이 대중의 법 감정에 미친 영향과, 소설 속 공간이 형벌의 상징으로 기능하는 방식을 고찰합니다."
+                }
+            ];
 
-  const youtubeVideos = [
-    { id: "v1", title: "법과 문학 강의 01", url: "https://www.youtube.com/embed/dQw4w9WgXcQ", originalUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
-    { id: "v2", title: "북 토크: 정의란 무엇인가", url: "https://www.youtube.com/embed/dQw4w9WgXcQ", originalUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
-    { id: "v3", title: "법적 주체의 문학적 변용", url: "https://www.youtube.com/embed/dQw4w9WgXcQ", originalUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
-    { id: "v4", title: "연구실 브이로그", url: "https://www.youtube.com/embed/dQw4w9WgXcQ", originalUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
-  ];
+            const youtubeVideos = [
+                { id: "v1", title: "법과 문학 강의 01", url: "https://www.youtube.com/embed/dQw4w9WgXcQ", originalUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+                { id: "v2", title: "북 토크: 정의란 무엇인가", url: "https://www.youtube.com/embed/dQw4w9WgXcQ", originalUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+                { id: "v3", title: "법적 주체의 문학적 변용", url: "https://www.youtube.com/embed/dQw4w9WgXcQ", originalUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+                { id: "v4", title: "연구실 브이로그", url: "https://www.youtube.com/embed/dQw4w9WgXcQ", originalUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+            ];
 
-  const handleAdminLogin = () => {
-    if (password === '8066') { 
-      setIsAdmin(true);
-      setShowPasswordModal(false);
-      setPassword('');
-    } else {
-      alert('비밀번호가 올바르지 않습니다.');
-    }
-  };
+            const handleAdminLogin = () => {
+                if (password === '8066') { 
+                    setIsAdmin(true);
+                    setShowPasswordModal(false);
+                    setPassword('');
+                } else {
+                    alert('비밀번호가 올바르지 않습니다.');
+                }
+            };
 
-  const copyDataToClipboard = () => {
-    const dataStr = JSON.stringify(archiveData, null, 2);
-    const el = document.createElement('textarea');
-    el.value = dataStr;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-    alert('데이터가 클립보드에 복사되었습니다. 코드의 archiveData 부분을 교체하세요.');
-  };
+            const copyDataToClipboard = () => {
+                const dataStr = JSON.stringify(archiveData, null, 2);
+                navigator.clipboard.writeText(dataStr);
+                alert('데이터가 클립보드에 복사되었습니다. 코드의 archiveData 부분을 교체하세요.');
+            };
 
-  return (
-    <div className="min-h-screen bg-[#FCFCFC] text-[#001A35] font-sans selection:bg-[#FFB800] selection:text-[#001A35]">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-[#001A35] text-white z-50 px-10 py-6 flex justify-between items-center shadow-2xl">
-        <div className="text-2xl font-black tracking-tighter uppercase italic">
-          Dr. <span className="text-[#FFB800]">B</span> Portfolio
-        </div>
-        <div className="hidden md:flex space-x-12 items-center">
-          {['intro', 'research', 'archive', 'youtube'].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`text-lg font-bold tracking-widest uppercase transition-all ${activeTab === tab ? 'text-[#FFB800]' : 'hover:text-[#FFB800]/70'}`}
-            >
-              {tab === 'intro' ? '소개' : tab === 'research' ? '연구 성과' : tab === 'archive' ? '아카이빙' : '유튜브'}
-            </button>
-          ))}
-          <button 
-            onClick={() => isAdmin ? setIsAdmin(false) : setShowPasswordModal(true)}
-            className={`p-2 rounded-full transition-colors ${isAdmin ? 'bg-[#FFB800] text-[#001A35]' : 'bg-white/10 text-white/40'}`}
-          >
-            <Lock size={18} />
-          </button>
-        </div>
-      </nav>
-
-      {/* Main Content */}
-      <main className="pt-32 pb-20 px-8 max-w-7xl mx-auto">
-        
-        {/* Intro Section */}
-        {activeTab === 'intro' && (
-          <div className="animate-in fade-in slide-in-from-bottom-6 duration-1000 space-y-12">
-            <section className="flex flex-col md:flex-row gap-12 items-center md:items-start py-6">
-              <div className="w-48 md:w-56 shrink-0">
-                <div className="aspect-[3/4] bg-[#001A35] rounded-2xl overflow-hidden shadow-xl flex items-center justify-center border-2 border-[#FFB800]/20">
-                   <User size={80} className="text-white/20" strokeWidth={0.5} />
-                </div>
-                <div className="mt-6 text-center md:text-left">
-                  <h1 className="text-3xl font-black tracking-tight text-[#001A35]">삐 (B)</h1>
-                  <p className="text-[#800020] font-bold mt-1 uppercase tracking-widest text-xs">Law & Literature Ph.D.</p>
-                </div>
-              </div>
-              
-              <div className="flex-1 pt-4 space-y-8">
-                <div className="space-y-6">
-                  <h2 className="text-5xl font-black leading-[1.1] text-[#001A35]">
-                    문장 속의 정의를 <br/>
-                    <span className="text-[#800020]">법전 위로</span> 길어올리다.
-                  </h2>
-                  <p className="text-xl text-gray-600 leading-relaxed font-serif max-w-3xl">
-                    법학의 논리적 완결성과 문학의 서사적 진실이 교차하는 지점을 탐구합니다. 
-                    저는 텍스트 너머의 인간을 이해하고, 그것을 제도적 언어로 번역하는 작업을 수행합니다.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <div className="w-full bg-white border border-gray-100 rounded-[32px] p-12 shadow-sm relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-[#FFB800]/5 rounded-full -mr-24 -mt-24"></div>
-              <h3 className="text-xs font-black text-[#800020] mb-10 flex items-center gap-3 uppercase tracking-[0.5em]">
-                <div className="w-6 h-1 bg-[#800020]"></div> CURRICULUM VITAE
-              </h3>
-              <div className="grid grid-cols-1 gap-10 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start border-b border-gray-50 pb-8">
-                  <span className="font-black text-[#001A35]/30 font-mono italic tracking-tighter uppercase">Academic</span>
-                  <div className="md:col-span-3">
-                    <p className="text-xl font-black italic">XX대학교 대학원 법학박사 (Ph.D.)</p>
-                    <p className="text-sm text-gray-400 mt-1">학위논문: 문학적 서사가 법적 판단에 미치는 영향에 관한 고찰</p>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start border-b border-gray-100 pb-8">
-                  <span className="font-black text-[#001A35]/30 font-mono italic tracking-tighter uppercase">Specialization</span>
-                  <div className="md:col-span-3 flex flex-wrap gap-3">
-                    {['법철학', '서사법학', '19세기 소설', '형벌 이론', '비판 법학'].map(tag => (
-                      <span key={tag} className="px-4 py-1.5 bg-gray-50 text-[#001A35] text-xs font-black rounded-lg border border-gray-200 uppercase">#{tag}</span>
-                    ))}
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
-                  <span className="font-black text-[#001A35]/30 font-mono italic tracking-tighter uppercase">Experience</span>
-                  <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="p-5 bg-gray-50 rounded-2xl border-l-4 border-[#FFB800]">
-                      <p className="text-sm font-black text-[#001A35]">현) XX학술연구소 상임연구원</p>
-                      <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Senior Researcher</p>
-                    </div>
-                    <div className="p-5 bg-gray-50 rounded-2xl border-l-4 border-[#FFB800]">
-                      <p className="text-sm font-black text-[#001A35]">전) 한국법문학회 편집위원</p>
-                      <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Editorial Board Member</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Research Section */}
-        {activeTab === 'research' && (
-          <div className="animate-in fade-in duration-700">
-            <div className="mb-16">
-              <h2 className="text-sm font-black text-[#800020] tracking-[0.5em] mb-2 uppercase">Research Output</h2>
-              {/* Updated Title Color to Black */}
-              <h3 className="text-4xl font-black italic text-[#000000]">주요 연구 성과</h3>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {researchData.map((item) => (
-                <div 
-                  key={item.id}
-                  onClick={() => setSelectedResearch(item)}
-                  className="bg-white border-2 border-gray-50 p-12 rounded-[40px] cursor-pointer hover:shadow-2xl hover:border-[#800020]/20 hover:-translate-y-2 transition-all duration-500 group relative overflow-hidden"
-                >
-                  <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                    <BookOpen size={100} strokeWidth={1} color="#800020" />
-                  </div>
-                  <span className="text-xs font-black text-[#800020] tracking-[0.3em] uppercase italic">Publication No.{item.id}</span>
-                  <h4 className="text-2xl font-black mt-4 mb-6 leading-tight group-hover:text-[#800020] transition-colors">{item.title}</h4>
-                  <p className="text-gray-500 mb-10 leading-relaxed line-clamp-2 text-sm">{item.summary}</p>
-                  <div className="inline-flex items-center gap-2 text-[#800020] font-black text-sm group-hover:gap-4 transition-all">
-                    자세히 보기 <ArrowRight size={18} className="text-[#800020]" />
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Modal */}
-            {selectedResearch && (
-              <div className="fixed inset-0 bg-[#001A35]/95 z-[100] flex items-center justify-center p-6 animate-in zoom-in-95">
-                <div className="bg-white rounded-[40px] max-w-4xl w-full max-h-[90vh] overflow-y-auto p-12 relative shadow-2xl">
-                  <button onClick={() => setSelectedResearch(null)} className="absolute top-8 right-8 text-[#800020] hover:rotate-90 transition-transform">
-                    <X size={36} />
-                  </button>
-                  <div className="space-y-12">
-                    <div>
-                      <span className="text-[#800020] font-black text-xs tracking-widest uppercase mb-4 block">Visual Insight</span>
-                      <div className="aspect-video bg-gray-50 rounded-3xl border-2 border-gray-100 flex items-center justify-center overflow-hidden shadow-inner">
-                        <img src={selectedResearch.image} alt="Visualization" className="w-full h-full object-cover" />
-                      </div>
-                    </div>
-                    <div className="space-y-8">
-                      <h3 className="text-4xl font-black leading-tight text-[#001A35]">{selectedResearch.title}</h3>
-                      <div className="p-10 bg-[#800020]/5 rounded-[32px] border-l-[12px] border-[#800020]">
-                        <p className="text-lg leading-relaxed text-[#800020] font-medium italic font-serif">{selectedResearch.abstract}</p>
-                      </div>
-                      <button className="w-full py-6 bg-[#800020] text-white font-black text-xl rounded-2xl flex items-center justify-center gap-3 hover:bg-[#001A35] transition-all">
-                        원문 아카이브 확인 <ExternalLink size={22} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Archiving Section */}
-        {activeTab === 'archive' && (
-          <div className="animate-in fade-in duration-700 h-[750px] flex flex-col">
-            <div className="flex justify-between items-end mb-8">
-              <div>
-                <h2 className="text-sm font-black text-[#800020] tracking-[0.5em] mb-2 uppercase">Knowledge Network</h2>
-                <h3 className="text-4xl font-black italic text-[#001A35]">지식 지도</h3>
-              </div>
-              {isAdmin && (
-                <div className="flex gap-4">
-                  <button onClick={copyDataToClipboard} className="flex items-center gap-2 px-6 py-3 bg-gray-100 hover:bg-[#FFB800] hover:text-[#001A35] rounded-xl font-black text-xs transition-all shadow-sm uppercase tracking-widest">
-                    <Copy size={14} /> Copy Map JSON
-                  </button>
-                </div>
-              )}
-            </div>
-
-            <div className="flex-1 bg-white border border-gray-100 rounded-[48px] shadow-2xl relative overflow-hidden group">
-              <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#001A35 1.5px, transparent 1.5px)', backgroundSize: '40px 40px' }}></div>
-              <div className="absolute inset-0 p-10 overflow-auto scrollbar-hide">
-                <div className="relative min-w-[1400px] min-h-[900px]">
-                  <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                    {archiveData.map(node => 
-                      node.connections.map(targetId => {
-                        const target = archiveData.find(n => n.id === targetId);
-                        if (!target || node.id > target.id) return null;
-                        return (
-                          <line 
-                            key={`${node.id}-${target.id}`}
-                            x1={node.x + 120} y1={node.y + 60}
-                            x2={target.x + 120} y2={target.y + 60}
-                            stroke="#FFB800" 
-                            strokeWidth="2.5" 
-                            strokeDasharray="8,5"
-                            className="opacity-50"
-                          />
-                        );
-                      })
-                    )}
-                  </svg>
-                  {archiveData.map((node) => (
-                    <div 
-                      key={node.id}
-                      onClick={() => setSelectedArchive(node)}
-                      className="absolute cursor-pointer w-64 p-8 bg-white border border-gray-50 rounded-3xl shadow-lg hover:shadow-2xl hover:border-[#FFB800] hover:-translate-y-2 transition-all z-10"
-                      style={{ left: node.x, top: node.y }}
-                    >
-                      <div className="text-[10px] font-black text-[#800020] mb-3 tracking-[0.2em] uppercase">{node.category}</div>
-                      <h4 className="font-black text-base leading-tight text-[#001A35]">{node.title}</h4>
-                      <div className="mt-4 flex justify-end">
-                        <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-[#FFB800] group-hover:bg-[#FFB800] group-hover:text-[#001A35] transition-colors">
-                          <Maximize2 size={14} />
+            return (
+                <div className="min-h-screen bg-[#FCFCFC] text-[#001A35] font-sans selection:bg-[#FFB800] selection:text-[#001A35]">
+                    {/* Navigation */}
+                    <nav className="fixed top-0 w-full bg-[#001A35] text-white z-50 px-10 py-6 flex justify-between items-center shadow-2xl">
+                        <div className="text-2xl font-black tracking-tighter uppercase italic">
+                            Dr. <span className="text-[#FFB800]">B</span> Portfolio
                         </div>
-                      </div>
-                    </div>
-                  ))}
+                        <div className="hidden md:flex space-x-12 items-center">
+                            {['intro', 'research', 'archive', 'youtube'].map((tab) => (
+                                <button
+                                    key={tab}
+                                    onClick={() => setActiveTab(tab)}
+                                    className={`text-lg font-bold tracking-widest uppercase transition-all ${activeTab === tab ? 'text-[#FFB800]' : 'hover:text-[#FFB800]/70'}`}
+                                >
+                                    {tab === 'intro' ? '소개' : tab === 'research' ? '연구 성과' : tab === 'archive' ? '아카이빙' : '유튜브'}
+                                </button>
+                            ))}
+                            <button 
+                                onClick={() => isAdmin ? setIsAdmin(false) : setShowPasswordModal(true)}
+                                className={`w-10 h-10 flex items-center justify-center rounded-full transition-colors ${isAdmin ? 'bg-[#FFB800] text-[#001A35]' : 'bg-white/10 text-white/40'}`}
+                            >
+                                <i className={`fa-solid ${isAdmin ? 'fa-unlock' : 'fa-lock'}`}></i>
+                            </button>
+                        </div>
+                    </nav>
+
+                    <main className="pt-32 pb-20 px-8 max-w-7xl mx-auto">
+                        {/* Intro Section */}
+                        {activeTab === 'intro' && (
+                            <div className="fade-in space-y-12">
+                                <section className="flex flex-col md:flex-row gap-12 items-center md:items-start py-6">
+                                    <div className="w-48 md:w-56 shrink-0 text-center md:text-left">
+                                        <div className="aspect-[3/4] bg-[#001A35] rounded-2xl overflow-hidden shadow-xl flex items-center justify-center border-2 border-[#FFB800]/20">
+                                            <i className="fa-solid fa-user text-white/20 text-7xl"></i>
+                                        </div>
+                                        <div className="mt-6">
+                                            <h1 className="text-3xl font-black tracking-tight">삐 (B)</h1>
+                                            <p className="text-[#800020] font-bold mt-1 uppercase tracking-widest text-xs">Law & Literature Ph.D.</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex-1 pt-4 space-y-8">
+                                        <div className="space-y-6">
+                                            <h2 className="text-5xl font-black leading-[1.1]">문장 속의 정의를 <br/><span className="text-[#800020]">법전 위로</span> 길어올리다.</h2>
+                                            <p className="text-xl text-gray-600 leading-relaxed font-serif max-w-3xl">법학의 논리적 완결성과 문학의 서사적 진실이 교차하는 지점을 탐구합니다. 저는 텍스트 너머의 인간을 이해하고, 그것을 제도적 언어로 번역하는 작업을 수행합니다.</p>
+                                        </div>
+                                    </div>
+                                </section>
+                                <div className="w-full bg-white border border-gray-100 rounded-[32px] p-12 shadow-sm relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 w-48 h-48 bg-[#FFB800]/5 rounded-full -mr-24 -mt-24"></div>
+                                    <h3 className="text-xs font-black text-[#800020] mb-10 flex items-center gap-3 uppercase tracking-[0.5em]"><div className="w-6 h-1 bg-[#800020]"></div> CURRICULUM VITAE</h3>
+                                    <div className="grid grid-cols-1 gap-10 relative z-10 font-serif">
+                                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start border-b border-gray-50 pb-8">
+                                            <span className="font-black text-[#001A35]/30 italic uppercase">Academic</span>
+                                            <div className="md:col-span-3"><p className="text-xl font-black italic">XX대학교 대학원 법학박사 (Ph.D.)</p><p className="text-sm text-gray-400 mt-1">학위논문: 문학적 서사가 법적 판단에 미치는 영향에 관한 고찰</p></div>
+                                        </div>
+                                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start border-b border-gray-100 pb-8">
+                                            <span className="font-black text-[#001A35]/30 italic uppercase">Specialization</span>
+                                            <div className="md:col-span-3 flex flex-wrap gap-3">{['법철학', '서사법학', '19세기 소설', '형벌 이론'].map(tag => (<span key={tag} className="px-4 py-1.5 bg-gray-50 text-[#001A35] text-xs font-black rounded-lg border border-gray-200">#{tag}</span>))}</div>
+                                        </div>
+                                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
+                                            <span className="font-black text-[#001A35]/30 italic uppercase">Experience</span>
+                                            <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                <div className="p-5 bg-gray-50 rounded-2xl border-l-4 border-[#FFB800]"><p className="text-sm font-black text-[#001A35]">현) XX학술연구소 상임연구원</p></div>
+                                                <div className="p-5 bg-gray-50 rounded-2xl border-l-4 border-[#FFB800]"><p className="text-sm font-black text-[#001A35]">전) 한국법문학회 편집위원</p></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Research Section */}
+                        {activeTab === 'research' && (
+                            <div className="fade-in space-y-16">
+                                <div className="mb-16"><h2 className="text-sm font-black text-[#800020] tracking-[0.5em] mb-2 uppercase">Research Output</h2><h3 className="text-4xl font-black italic text-[#000000]">주요 연구 성과</h3></div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                                    {researchData.map((item) => (
+                                        <div key={item.id} onClick={() => setSelectedResearch(item)} className="bg-white border-2 border-gray-50 p-12 rounded-[40px] cursor-pointer hover:shadow-2xl transition-all duration-500 group relative">
+                                            <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity"><i className="fa-solid fa-book-open text-8xl text-[#800020]"></i></div>
+                                            <span className="text-xs font-black text-[#800020] tracking-[0.3em] uppercase italic text-sm">Publication No.{item.id}</span>
+                                            <h4 className="text-2xl font-black mt-4 mb-6 leading-tight group-hover:text-[#800020]">{item.title}</h4>
+                                            <p className="text-gray-500 mb-10 leading-relaxed line-clamp-2 text-sm">{item.summary}</p>
+                                            <div className="inline-flex items-center gap-2 text-[#800020] font-black text-sm group-hover:gap-4 transition-all">자세히 보기 <i className="fa-solid fa-arrow-right"></i></div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Archive Section */}
+                        {activeTab === 'archive' && (
+                            <div className="fade-in space-y-8 h-[750px] flex flex-col">
+                                <div className="flex justify-between items-end mb-8"><div><h2 className="text-sm font-black text-[#800020] tracking-[0.5em] mb-2 uppercase">Knowledge Network</h2><h3 className="text-4xl font-black italic text-[#001A35]">지식 지도</h3></div>
+                                {isAdmin && <button onClick={copyDataToClipboard} className="flex items-center gap-2 px-6 py-3 bg-gray-100 hover:bg-[#FFB800] rounded-xl font-black text-xs transition-all uppercase tracking-widest"><i className="fa-solid fa-copy"></i> Copy JSON</button>}</div>
+                                <div className="flex-1 bg-white border border-gray-100 rounded-[48px] shadow-2xl relative overflow-auto scrollbar-hide">
+                                    <div className="relative min-w-[1400px] min-h-[900px] bg-[radial-gradient(#001A35_1.5px,transparent_1.5px)] bg-[length:40px_40px] opacity-[0.9]">
+                                        <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                                            {archiveData.map(node => node.connections.map(targetId => {
+                                                const target = archiveData.find(n => n.id === targetId);
+                                                if (!target || node.id > target.id) return null;
+                                                return <line key={`${node.id}-${target.id}`} x1={node.x + 120} y1={node.y + 60} x2={target.x + 120} y2={target.y + 60} stroke="#FFB800" strokeWidth="2.5" strokeDasharray="8,5" opacity="0.5" />;
+                                            }))}
+                                        </svg>
+                                        {archiveData.map((node) => (
+                                            <div key={node.id} onClick={() => setSelectedArchive(node)} className="absolute cursor-pointer w-64 p-8 bg-white border border-gray-50 rounded-3xl shadow-lg hover:shadow-2xl hover:border-[#FFB800] transition-all z-10" style={{ left: node.x, top: node.y }}>
+                                                <div className="text-[10px] font-black text-[#800020] mb-3 uppercase tracking-widest">{node.category}</div>
+                                                <h4 className="font-black text-base text-[#001A35] leading-tight">{node.title}</h4>
+                                                <div className="mt-4 flex justify-end text-[#FFB800]"><i className="fa-solid fa-maximize"></i></div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* YouTube Section */}
+                        {activeTab === 'youtube' && (
+                            <div className="fade-in space-y-16">
+                                <div className="mb-16"><h2 className="text-sm font-black text-[#800020] tracking-[0.5em] mb-2 uppercase">Video Lectures</h2><h3 className="text-4xl font-black italic text-[#001A35]">아카이브 영상</h3></div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                                    {youtubeVideos.map((video) => (
+                                        <div key={video.id} className="group">
+                                            <div className="aspect-video bg-[#001A35] rounded-[32px] overflow-hidden shadow-2xl relative border-b-[10px] border-[#FFB800]"><iframe width="100%" height="100%" src={video.url} frameBorder="0" allowFullScreen></iframe></div>
+                                            <div className="mt-8 px-2">
+                                                <a href={video.originalUrl} target="_blank" className="text-2xl font-black hover:text-[#800020] transition-colors inline-block">{video.title} <i className="fa-solid fa-arrow-up-right-from-square text-sm ml-2"></i></a>
+                                                <p className="text-xs text-gray-400 font-mono mt-3 tracking-widest uppercase italic">Lecture Archive Series | 2026</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </main>
+
+                    {/* Modals */}
+                    {selectedResearch && (
+                        <div className="fixed inset-0 bg-[#001A35]/95 z-[100] flex items-center justify-center p-6" onClick={() => setSelectedResearch(null)}>
+                            <div className="bg-white rounded-[40px] max-w-4xl w-full max-h-[90vh] overflow-y-auto p-12 relative shadow-2xl" onClick={e => e.stopPropagation()}>
+                                <button onClick={() => setSelectedResearch(null)} className="absolute top-8 right-8 text-[#800020] text-4xl hover:rotate-90 transition-all"><i className="fa-solid fa-xmark"></i></button>
+                                <div className="space-y-12">
+                                    <div className="aspect-video bg-gray-50 rounded-3xl border border-gray-100 overflow-hidden"><img src={selectedResearch.image} className="w-full h-full object-cover" /></div>
+                                    <div className="space-y-8">
+                                        <h3 className="text-4xl font-black text-[#001A35]">{selectedResearch.title}</h3>
+                                        <div className="p-10 bg-[#800020]/5 rounded-[32px] border-l-[12px] border-[#800020]"><p className="text-lg leading-relaxed text-[#800020] font-medium italic font-serif">"{selectedResearch.abstract}"</p></div>
+                                        <button className="w-full py-6 bg-[#800020] text-white font-black text-xl rounded-2xl flex items-center justify-center gap-3 hover:bg-[#001A35] transition-all">원문 아카이브 확인 <i className="fa-solid fa-link"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {selectedArchive && (
+                        <div className="fixed inset-0 bg-[#001A35]/40 backdrop-blur-md z-[110] flex items-center justify-center p-6" onClick={() => setSelectedArchive(null)}>
+                            <div className="bg-white rounded-[40px] p-12 max-w-lg w-full shadow-2xl border-t-[20px] border-[#FFB800]" onClick={e => e.stopPropagation()}>
+                                <div className="flex justify-between items-start mb-8"><span className="text-[#800020] font-black text-xs tracking-widest uppercase">{selectedArchive.category}</span><button onClick={() => setSelectedArchive(null)} className="text-gray-300 hover:text-[#001A35] text-2xl"><i className="fa-solid fa-xmark"></i></button></div>
+                                <h3 className="text-3xl font-black mb-6 leading-tight text-[#001A35]">{selectedArchive.title}</h3>
+                                <div className="h-1.5 w-16 bg-[#001A35] mb-10"></div>
+                                <p className="text-gray-600 leading-relaxed text-lg font-serif italic mb-10">"{selectedArchive.content}"</p>
+                                <button onClick={() => window.open(selectedArchive.link, '_blank')} className="w-full py-5 bg-[#001A35] text-[#FFB800] text-xs font-black rounded-xl hover:bg-[#800020] hover:text-white transition-all tracking-widest uppercase">자료 원본 보기 <i className="fa-solid fa-arrow-right-long ml-2"></i></button>
+                            </div>
+                        </div>
+                    )}
+
+                    {showPasswordModal && (
+                        <div className="fixed inset-0 bg-[#001A35]/95 z-[200] flex items-center justify-center p-6">
+                            <div className="bg-white p-12 rounded-[48px] max-w-sm w-full text-center space-y-10 shadow-2xl">
+                                <div className="w-24 h-24 bg-[#FFB800] rounded-full flex items-center justify-center mx-auto text-[#001A35] text-4xl shadow-inner"><i className="fa-solid fa-user-shield"></i></div>
+                                <div className="space-y-2"><h3 className="text-3xl font-black text-[#001A35]">ADMIN</h3><p className="text-xs text-gray-400 font-bold tracking-widest uppercase italic">Identity Verification</p></div>
+                                <input type="password" placeholder="••••" value={password} onChange={(e) => setPassword(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleAdminLogin()} className="w-full border-b-4 border-[#001A35] py-4 text-center text-4xl font-black tracking-[0.5em] outline-none" autoFocus />
+                                <div className="flex gap-4"><button onClick={() => setShowPasswordModal(false)} className="flex-1 py-5 font-black text-gray-400 uppercase tracking-widest">Close</button><button onClick={handleAdminLogin} className="flex-1 py-5 bg-[#001A35] text-[#FFB800] font-black rounded-[20px] uppercase tracking-widest">Access</button></div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Footer */}
+                    <footer className="mt-40 py-24 bg-white border-t border-gray-100"><div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-12"><div><h2 className="text-2xl font-black italic uppercase tracking-tighter text-[#001A35]">Dr. <span className="text-[#800020]">B</span> Portfolio</h2><p className="text-[10px] text-gray-300 mt-3 font-mono uppercase tracking-[0.5em] italic">Advancing the Discourse of Law & Literature</p></div><div className="text-[10px] text-gray-400 font-black tracking-[0.8em] uppercase border-b border-gray-100 pb-2">© MMXXVI ALL RIGHTS RESERVED</div></div></footer>
                 </div>
-              </div>
-            </div>
+            );
+        };
 
-            {selectedArchive && (
-              <div className="fixed inset-0 bg-[#001A35]/40 backdrop-blur-md z-[110] flex items-center justify-center p-6" onClick={() => setSelectedArchive(null)}>
-                <div className="bg-white rounded-[40px] p-12 max-w-lg w-full shadow-2xl border-t-[20px] border-[#FFB800]" onClick={e => e.stopPropagation()}>
-                  <div className="flex justify-between items-start mb-8">
-                    <span className="text-[#800020] font-black text-xs tracking-[0.4em] uppercase">{selectedArchive.category}</span>
-                    <button onClick={() => setSelectedArchive(null)} className="text-gray-300 hover:text-[#001A35]"><X size={28}/></button>
-                  </div>
-                  <h3 className="text-3xl font-black mb-6 leading-tight text-[#001A35]">{selectedArchive.title}</h3>
-                  <div className="h-1.5 w-16 bg-[#001A35] mb-10"></div>
-                  <p className="text-gray-600 leading-relaxed text-lg font-serif italic">
-                    "{selectedArchive.content}"
-                  </p>
-                  <div className="mt-12">
-                    <button 
-                      onClick={() => window.open(selectedArchive.link, '_blank')}
-                      className="w-full py-5 bg-[#001A35] text-[#FFB800] text-xs font-black rounded-xl hover:bg-[#800020] hover:text-white transition-all tracking-[0.2em] uppercase"
-                    >
-                      자료 원본 보기 <ExternalLink size={14} className="inline ml-2" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* YouTube Section */}
-        {activeTab === 'youtube' && (
-          <div className="animate-in fade-in duration-700">
-            <div className="mb-16">
-              <h2 className="text-sm font-black text-[#800020] tracking-[0.5em] mb-2 uppercase">Video Lectures</h2>
-              <h3 className="text-4xl font-black italic text-[#001A35]">아카이브 영상</h3>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-              {youtubeVideos.map((video) => (
-                <div key={video.id} className="group">
-                  <div className="aspect-video bg-[#001A35] rounded-[32px] overflow-hidden shadow-2xl relative border-b-[10px] border-[#FFB800]">
-                    <iframe 
-                      width="100%" 
-                      height="100%" 
-                      src={video.url} 
-                      title={video.title}
-                      frameBorder="0" 
-                      allowFullScreen
-                      className="opacity-95 group-hover:opacity-100 transition-opacity"
-                    ></iframe>
-                  </div>
-                  <div className="mt-8 flex justify-between items-start px-2">
-                    <div className="flex-1">
-                      {/* Title linked to originalUrl */}
-                      <a 
-                        href={video.originalUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-2xl font-black hover:text-[#800020] transition-colors inline-block cursor-pointer"
-                      >
-                        {video.title}
-                      </a>
-                      <p className="text-xs text-gray-400 font-mono mt-3 tracking-widest uppercase italic">Lecture Archive Series | 2026</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-      </main>
-
-      {/* Admin Login Modal */}
-      {showPasswordModal && (
-        <div className="fixed inset-0 bg-[#001A35]/95 z-[200] flex items-center justify-center p-6">
-          <div className="bg-white p-12 rounded-[48px] max-w-sm w-full text-center space-y-10">
-            <div className="w-24 h-24 bg-[#FFB800] rounded-full flex items-center justify-center mx-auto text-[#001A35]">
-              <Lock size={40} />
-            </div>
-            <div className="space-y-2">
-              <h3 className="text-3xl font-black text-[#001A35]">ADMIN</h3>
-              <p className="text-xs text-gray-400 font-bold tracking-widest uppercase">Identity Verification</p>
-            </div>
-            <input 
-              type="password" 
-              placeholder="••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleAdminLogin()}
-              className="w-full border-b-4 border-[#001A35] py-4 text-center text-4xl font-black tracking-[0.5em] outline-none"
-              autoFocus
-            />
-            <div className="flex gap-4">
-              <button onClick={() => setShowPasswordModal(false)} className="flex-1 py-5 font-black text-gray-400 uppercase tracking-widest">Close</button>
-              <button onClick={handleAdminLogin} className="flex-1 py-5 bg-[#001A35] text-[#FFB800] font-black rounded-[20px] uppercase tracking-widest">Access</button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Footer */}
-      <footer className="mt-40 py-24 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-12">
-          <div>
-            <h2 className="text-2xl font-black italic uppercase tracking-tighter text-[#001A35]">Dr. <span className="text-[#800020]">B</span> Portfolio</h2>
-            <p className="text-[10px] text-gray-300 mt-3 font-mono uppercase tracking-[0.5em]">Advancing the Discourse of Law & Literature</p>
-          </div>
-          <div className="text-[10px] text-gray-400 font-black tracking-[0.8em] uppercase border-b border-gray-100 pb-2">
-            © MMXXVI ALL RIGHTS RESERVED
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-};
-
-export default App;
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
