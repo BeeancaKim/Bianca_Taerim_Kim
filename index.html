@@ -52,10 +52,9 @@
             ];
 
             const youtubeVideos = [
-                { id: "v1", title: "법과 문학 강의 01", url: "https://www.youtube.com/embed/dQw4w9WgXcQ", originalUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
-                { id: "v2", title: "북 토크: 정의란 무엇인가", url: "https://www.youtube.com/embed/dQw4w9WgXcQ", originalUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
-                { id: "v3", title: "법적 주체의 문학적 변용", url: "https://www.youtube.com/embed/dQw4w9WgXcQ", originalUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
-                { id: "v4", title: "연구실 브이로그", url: "https://www.youtube.com/embed/dQw4w9WgXcQ", originalUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+                { id: "v1", title: "삐찌의 귀여운 순간들", url: "https://youtu.be/w_hC1J9JVOE?si=lrcrnjO-jhJMHxGf", originalUrl: "https://youtu.be/w_hC1J9JVOE?si=lrcrnjO-jhJMHxGf" },
+                { id: "v2", title: "피츄와 첫만남", url: "https://youtu.be/eK2HVAoykPQ?si=y2IDJEQ9_muh9McU", originalUrl: "https://youtu.be/eK2HVAoykPQ?si=y2IDJEQ9_muh9McU" },
+                { id: "v3", title: "둘이 함께", url: "https://youtu.be/eTf7-AeJNbo?si=Lnr9owVDqh8nkvIV", originalUrl: "https://youtu.be/eTf7-AeJNbo?si=Lnr9owVDqh8nkvIV" },
             ];
 
             const handleMouseDown = (e, node) => {
@@ -222,7 +221,7 @@
                                     {youtubeVideos.map((video) => (
                                         <div key={video.id} className="group">
                                             <div className="aspect-video bg-[#001A35] rounded-[32px] overflow-hidden shadow-2xl relative border-b-[10px] border-[#FFB800]"><iframe width="100%" height="100%" src={video.url} frameBorder="0" allowFullScreen className="opacity-95 group-hover:opacity-100 transition-opacity"></iframe></div>
-                                            <div className="mt-8 px-2"><a href={video.originalUrl} target="_blank" rel="noopener noreferrer" className="text-2xl font-black hover:text-[#800020] transition-colors inline-block">{video.title} <i className="fa-solid fa-arrow-up-right-from-square text-sm ml-2"></i></a><p className="text-xs text-gray-400 font-mono mt-3 tracking-widest uppercase italic font-black">Lecture Archive Series | 2026</p></div>
+                                            <div className="mt-8 px-2"><a href={video.originalUrl} target="_blank" rel="noopener noreferrer" className="text-2xl font-black hover:text-[#800020] transition-colors inline-block">{video.title} <i className="fa-solid fa-arrow-up-right-from-square text-sm ml-2"></i></a><p className="text-xs text-gray-400 font-mono mt-3 tracking-widest uppercase italic font-black">Lecture Archive</p></div>
                                         </div>
                                     ))}
                                 </div>
