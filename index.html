@@ -185,18 +185,19 @@
     </div>
   </div>
 </div>
-                                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start border-b border-gray-100 pb-8"><span className="font-black font-sans text-[#001A35]/30 italic uppercase">Specializations</span><div className="md:col-span-3 flex flex-wrap gap-3">{['Law & Literature', 'Korean Classics', 'Digital Humanities', 'Jurisprudence'].map(tag => (<span key={tag} className="px-4 py-1.5 bg-gray-50 text-[#001A35] text-xs font-black rounded-lg border border-gray-200">#{tag}</span>))}</div></div>
-                                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start border-b border-gray-100 pb-8"><span className="font-black font-sans text-[#001A35]/30 italic uppercase">Specializations</span><div className="md:col-span-3 flex flex-wrap gap-3">{['Law & Literature', 'Korean Classics', 'Digital Humanities', 'Jurisprudence'].map(tag => (<span key={tag} className="px-4 py-1.5 bg-gray-50 text-[#001A35] text-xs font-black rounded-lg border border-gray-200">#{tag}</span>))}</div></div>
+    
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
     <span className="font-black font-sans text-[#001A35]/30 italic uppercase">
         Professional<br/>Appointments
     </span>
     <div className="md:col-span-3 space-y-7">
-        {/* 1. Researcher */}
+        {/* 1. Lecturer (최신) */}
         <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50">
-            <span className="text-[#800020] font-black text-sm min-w-[160px]">2017. 03. – 2020. 10.</span>
+            <span className="text-[#800020] font-black text-sm min-w-[160px]">2021. 09. – 2024. 09.</span>
             <div className="flex flex-col">
-                <span className="text-[#001A35] font-bold">Researcher</span>
-                <span className="text-xs text-gray-400 uppercase tracking-widest mt-1">Institute of Folklore Studies</span>
+                <span className="text-[#001A35] font-bold">Lecturer</span>
+                <span className="text-xs text-gray-400 uppercase tracking-widest mt-1">Department of Korean Language and Literature, Kyung Hee University</span>
             </div>
         </div>
 
@@ -209,42 +210,33 @@
             </div>
         </div>
 
-        {/* 3. Lecturer 항목 */}
+        {/* 3. Researcher */}
         <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50">
-            <span className="text-[#800020] font-black text-sm min-w-[160px]">2021. 09. – 2024. 09.</span>
+            <span className="text-[#800020] font-black text-sm min-w-[160px]">2017. 03. – 2020. 10.</span>
             <div className="flex flex-col">
-                <span className="text-[#001A35] font-bold">Lecturer</span>
-                <span className="text-xs text-gray-400 uppercase tracking-widest mt-1">Department of Korean Language and Literature, Kyung Hee University</span>
+                <span className="text-[#001A35] font-bold">Researcher</span>
+                <span className="text-xs text-gray-400 uppercase tracking-widest mt-1">Institute of Folklore Studies</span>
             </div>
         </div>
     </div> {/* Professional Appointments의 col-span-3 닫기 */}
 </div> {/* Professional Appointments의 grid 닫기 */}
 
-{/* 여기서부터 새로운 Publications 섹션 시작 */}
+{/* Research Contributions 섹션 시작 */}
 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start pt-12 border-t border-gray-100">
     <span className="font-black font-sans text-[#001A35]/30 italic uppercase">
         Research<br/>Contributions
     </span>
     <div className="md:col-span-3 space-y-7">
-        {/* 4. Master's Thesis 항목 시작 */}
+        {/* 1. Doctoral Dissertation (최신) */}
         <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50">
-            <span className="text-[#800020] font-black text-sm min-w-[160px]">2019. 02.</span>
+            <span className="text-[#800020] font-black text-sm min-w-[160px]">2023. 02.</span>
             <div className="flex flex-col">
-                <span className="text-[#001A35] font-bold">Current Status and Future Prospects of Research on Classics and Cultural Contents</span>
-                <span className="text-[10px] text-[#FFB800] font-black uppercase mt-1 tracking-tighter">Master’s Thesis</span>
+                <span className="text-[#001A35] font-bold">A Study on Legal Education for Humanities Departments</span>
+                <span className="text-[10px] text-[#FFB800] font-black uppercase mt-1 tracking-tighter">Doctoral Dissertation</span>
             </div>
         </div>
 
-        {/* 5. Shaman Songs (Co-author) */}
-        <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50">
-            <span className="text-[#800020] font-black text-sm min-w-[160px]">2020. 11.</span>
-            <div className="flex flex-col">
-                <span className="text-[#001A35] font-bold">A Structural Study of Narrative Shaman Songs through Ontology Methods</span>
-                <span className="text-[10px] text-gray-400 uppercase mt-1">Co-author</span>
-            </div>
-        </div>
-
-        {/* 6. Dongducheon Archive (Co-author) */}
+        {/* 2. Dongducheon Archive */}
         <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50">
             <span className="text-[#800020] font-black text-sm min-w-[160px]">2020. 12.</span>
             <div className="flex flex-col">
@@ -253,12 +245,21 @@
             </div>
         </div>
 
-        {/* 7. Doctoral Dissertation */}
-        <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8">
-            <span className="text-[#800020] font-black text-sm min-w-[160px]">2023. 02.</span>
+        {/* 3. Shaman Songs */}
+        <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 pb-5 border-b border-gray-50">
+            <span className="text-[#800020] font-black text-sm min-w-[160px]">2020. 11.</span>
             <div className="flex flex-col">
-                <span className="text-[#001A35] font-bold">A Study on Legal Education for Humanities Departments</span>
-                <span className="text-[10px] text-[#FFB800] font-black uppercase mt-1 tracking-tighter">Doctoral Dissertation</span>
+                <span className="text-[#001A35] font-bold">A Structural Study of Narrative Shaman Songs through Ontology Methods</span>
+                <span className="text-[10px] text-gray-400 uppercase mt-1">Co-author</span>
+            </div>
+        </div>
+
+        {/* 4. Master's Thesis */}
+        <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8">
+            <span className="text-[#800020] font-black text-sm min-w-[160px]">2019. 02.</span>
+            <div className="flex flex-col">
+                <span className="text-[#001A35] font-bold">Current Status and Future Prospects of Research on Classics and Cultural Contents</span>
+                <span className="text-[10px] text-[#FFB800] font-black uppercase mt-1 tracking-tighter">Master’s Thesis</span>
             </div>
         </div>
     </div>
