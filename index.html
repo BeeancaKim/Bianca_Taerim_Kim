@@ -137,7 +137,52 @@
                                     <div className="absolute top-0 right-0 w-48 h-48 bg-[#FFB800]/5 rounded-full -mr-24 -mt-24"></div>
                                     <h3 className="text-xs font-black font-sans text-[#800020] mb-10 flex items-center gap-3 tracking-[0.5em]"><div className="w-6 h-1 bg-[#800020]"></div> Curriculum Vitae</h3>
                                     <div className="grid grid-cols-1 gap-10 relative z-10">
-                                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start border-b border-gray-50 pb-8"><span className="font-black font-sans text-[#001A35]/30 italic uppercase">Academic Qualifications</span><div className="md:col-span-3"><p className="text-xl font-black italic">XX대학교 대학원 법학박사 (Ph.D.)</p><p className="text-sm text-gray-400 mt-1">학위논문: 문학적 서사가 법적 판단에 미치는 영향에 관한 고찰</p></div></div>
+                                       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start border-b border-gray-50 pb-8">
+  <span className="font-black font-sans text-[#001A35]/30 italic uppercase">
+    Academic<br/>Qualifications
+  </span>
+  <div className="md:col-span-3 space-y-7">
+    {/* Ph.D. */}
+    <div className="group">
+      <div className="flex items-center gap-4">
+        <span className="text-2xl font-black italic text-[#001A35] min-w-[70px]">Ph.D.</span>
+        <div className="h-1 w-6 bg-[#FFB800]"></div>
+        <span className="text-lg font-bold text-[#800020]">Kyung Hee University</span>
+      </div>
+      <p className="text-sm text-gray-400 mt-1 ml-[90px] uppercase tracking-wider">Classical Korean Literature, Graduate School</p>
+    </div>
+
+    {/* J.D. */}
+    <div className="group">
+      <div className="flex items-center gap-4">
+        <span className="text-2xl font-black italic text-[#001A35] min-w-[70px]">J.D.</span>
+        <div className="h-1 w-6 bg-[#FFB800]"></div>
+        <span className="text-lg font-bold text-[#800020]">Kyung Hee University Law School</span>
+      </div>
+      <p className="text-sm text-gray-400 mt-1 ml-[90px] uppercase tracking-wider">Law, Juris Doctor</p>
+    </div>
+
+    {/* M.A. */}
+    <div className="group">
+      <div className="flex items-center gap-4">
+        <span className="text-2xl font-black italic text-[#001A35] min-w-[70px]">M.A.</span>
+        <div className="h-1 w-6 bg-[#FFB800]"></div>
+        <span className="text-lg font-bold text-[#800020]">Kyung Hee University</span>
+      </div>
+      <p className="text-sm text-gray-400 mt-1 ml-[90px] uppercase tracking-wider">Classical Korean Literature, Graduate School</p>
+    </div>
+
+    {/* B.A. */}
+    <div className="group">
+      <div className="flex items-center gap-4">
+        <span className="text-2xl font-black italic text-[#001A35] min-w-[70px]">B.A.</span>
+        <div className="h-1 w-6 bg-[#FFB800]"></div>
+        <span className="text-lg font-bold text-[#800020]">Kyung Hee University</span>
+      </div>
+      <p className="text-sm text-gray-400 mt-1 ml-[90px] uppercase tracking-wider">Korean Language and Literature</p>
+    </div>
+  </div>
+</div>
                                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start border-b border-gray-100 pb-8"><span className="font-black font-sans text-[#001A35]/30 italic uppercase">Specializations</span><div className="md:col-span-3 flex flex-wrap gap-3">{['법철학', '서사법학', '19세기 소설', '형벌 이론'].map(tag => (<span key={tag} className="px-4 py-1.5 bg-gray-50 text-[#001A35] text-xs font-black rounded-lg border border-gray-200">#{tag}</span>))}</div></div>
                                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
                                             <span className="font-black font-sans text-[#001A35]/30 italic uppercase">Professional<br/>Appointments</span>
